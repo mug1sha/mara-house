@@ -67,21 +67,23 @@ function SectionTitle({
   eyebrow,
   title,
   description,
+  light = false,
 }: {
   eyebrow: string;
   title: string;
   description?: string;
+  light?: boolean;
 }) {
   return (
     <div className="max-w-2xl">
-      <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-[#a77c52]">
+      <p className={`mb-4 text-xs font-semibold uppercase tracking-[0.25em] ${light ? "text-[#c9a97a]" : "text-[#a77c52]"}`}>
         {eyebrow}
       </p>
-      <h2 className="font-serif text-3xl leading-tight tracking-tight text-[#25241f] md:text-5xl">
+      <h2 className={`font-serif text-3xl leading-tight tracking-tight md:text-5xl ${light ? "text-white" : "text-[#25241f]"}`}>
         {title}
       </h2>
       {description && (
-        <p className="mt-5 max-w-xl text-sm leading-7 text-[#77746e] md:text-base">
+        <p className={`mt-5 max-w-xl text-sm leading-7 md:text-base ${light ? "text-white/60" : "text-[#77746e]"}`}>
           {description}
         </p>
       )}
@@ -309,75 +311,98 @@ Please share availability and final pricing.`;
         </section>
 
         {/* ROOMS */}
-        <section id="rooms" className="bg-[#eeece5] px-5 py-20 md:py-32 md:px-6 lg:px-10">
+        <section id="rooms" className="bg-[#0e0d0b] px-5 py-20 md:py-32 md:px-6 lg:px-10">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-12 flex flex-col justify-between gap-5 md:mb-14 md:flex-row md:items-end">
+            <div className="mb-12 flex flex-col justify-between gap-5 md:mb-16 md:flex-row md:items-end">
               <Reveal>
                 <SectionTitle
                   eyebrow="Stay with us"
                   title="Spaces made for slowing down."
                   description="Find the right space for your journey, from comfortable essentials to our more spacious suites."
+                  light
                 />
               </Reveal>
               <Reveal delay={0.1}>
                 <a
                   href="#booking"
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-widest"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-widest text-[#c9a97a]"
                 >
                   Find your room <ArrowRight size={14} />
                 </a>
               </Reveal>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-3">
+            {/* Editorial full-bleed cards */}
+            <div className="grid gap-4 md:grid-cols-3 md:gap-5">
               {rooms.map((item, index) => (
                 <Reveal key={item.name} delay={index * 0.12}>
-                  <TiltCard>
-                    <article className="overflow-hidden bg-[#f8f6f1]">
-                      {/* Image wrapper — tag badge sits inside this relative container */}
-                      <div className="relative h-[260px] md:h-[360px]">
-                        <ParallaxImage
-                          src={item.image}
-                          alt={item.name}
-                          className="h-full w-full"
-                        />
-                        <span className="absolute left-4 top-4 bg-[#f8f6f1] px-3 py-1.5 text-[9px] uppercase tracking-[0.2em]">
-                          {item.tag}
-                        </span>
-                      </div>
-                      <div className="p-5 md:p-6">
-                        <div className="flex items-start justify-between gap-3">
-                          <div>
-                            <h3 className="font-serif text-xl md:text-2xl">{item.name}</h3>
-                            <p className="mt-2 text-sm leading-6 text-[#77746e]">
-                              {item.description}
-                            </p>
-                          </div>
-                          <ArrowUpRight className="mt-1 shrink-0 text-[#a77c52]" size={18} />
-                        </div>
-                        <div className="mt-5 flex items-center justify-between border-t border-[#d5d1c7] pt-4">
-                          <p className="text-xs text-[#77746e]">
-                            From{" "}
-                            <span className="font-semibold text-[#25241f]">
-                              {item.price} RWF
-                            </span>{" "}
-                            / night
+                  <a
+                    href="#booking"
+                    className="group relative block h-[480px] overflow-hidden md:h-[580px]"
+                  >
+                    {/* Full-bleed parallax image */}
+                    <ParallaxImage
+                      src={item.image}
+                      alt={item.name}
+                      className="absolute inset-0 h-full w-full"
+                    />
+
+                    {/* Always-on dark vignette at bottom */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
+
+                    {/* Tag — top right */}
+                    <span className="absolute right-5 top-5 border border-white/30 bg-black/30 px-3 py-1.5 text-[9px] uppercase tracking-[0.25em] text-white/80 backdrop-blur-sm">
+                      {item.tag}
+                    </span>
+
+                    {/* Room number — large faded background text */}
+                    <span className="absolute left-5 top-4 font-serif text-7xl font-bold leading-none text-white/[0.06] select-none md:text-8xl">
+                      0{index + 1}
+                    </span>
+
+                    {/* Content — slides up on hover */}
+                    <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
+
+                      {/* Description — hidden by default, revealed on hover */}
+                      <p className="mb-4 max-h-0 overflow-hidden text-sm leading-6 text-white/70 transition-all duration-500 ease-out group-hover:max-h-20">
+                        {item.description}
+                      </p>
+
+                      <div className="flex items-end justify-between gap-3">
+                        <div>
+                          <p className="mb-1 text-[10px] uppercase tracking-[0.25em] text-[#c9a97a]">
+                            From
                           </p>
-                          <a
-                            href="#booking"
-                            className="text-[10px] uppercase tracking-widest underline underline-offset-4"
-                          >
-                            Enquire
-                          </a>
+                          <h3 className="font-serif text-2xl leading-tight text-white md:text-3xl">
+                            {item.name}
+                          </h3>
+                        </div>
+
+                        <div className="text-right">
+                          <p className="font-serif text-xl text-[#c9a97a] md:text-2xl">
+                            {item.price}
+                          </p>
+                          <p className="text-[9px] uppercase tracking-widest text-white/50">
+                            RWF / night
+                          </p>
                         </div>
                       </div>
-                    </article>
-                  </TiltCard>
+
+                      {/* CTA line — slides in on hover */}
+                      <div className="mt-5 flex items-center gap-3 border-t border-white/20 pt-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
+                        <span className="text-[10px] uppercase tracking-widest text-white/80">
+                          Enquire about this room
+                        </span>
+                        <ArrowUpRight size={13} className="text-[#c9a97a]" />
+                      </div>
+
+                    </div>
+                  </a>
                 </Reveal>
               ))}
             </div>
 
-            <p className="mt-8 text-xs text-[#77746e]">
+            <p className="mt-8 text-xs text-white/30">
               *All displayed room rates are illustrative demonstration prices.
             </p>
           </div>
