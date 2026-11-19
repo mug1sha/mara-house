@@ -5,10 +5,11 @@ import {
   useScroll,
   useTransform,
   useReducedMotion,
+  useInView,
 } from "motion/react";
 import { useRef } from "react";
 
-// 01. Scroll reveal
+// 01. Scroll reveal — animates in on scroll down, out on scroll up
 export function Reveal({
   children,
   delay = 0,
@@ -18,24 +19,23 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
+  const inView = useInView(ref, { amount: 0.15 });
 
   return (
     <motion.div
-      initial={
+      ref={ref}
+      animate={
         reduceMotion
-          ? false
+          ? {}
+          : inView
+          ? { opacity: 1, y: 0, filter: "blur(0px)" }
           : { opacity: 0, y: 28, filter: "blur(4px)" }
       }
-      whileInView={{
-        opacity: 1,
-        y: 0,
-        filter: "blur(0px)",
-      }}
-      viewport={{ once: false, amount: 0.15 }}
       transition={{
         duration: 0.75,
-        delay,
+        delay: inView ? delay : 0,
         ease: [0.22, 1, 0.36, 1],
       }}
       className={className}
@@ -63,17 +63,10 @@ export function ParallaxImage({
     offset: ["start end", "end start"],
   });
 
-  const y = useTransform(
-    scrollYProgress,
-    [0, 1],
-    ["-5%", "5%"]
-  );
+  const y = useTransform(scrollYProgress, [0, 1], ["-5%", "5%"]);
 
   return (
-    <div
-      ref={ref}
-      className={`overflow-hidden ${className}`}
-    >
+    <div ref={ref} className={`overflow-hidden ${className}`}>
       <motion.img
         src={src}
         alt={alt}
@@ -104,21 +97,10 @@ export function TiltCard({
         whileHover={
           reduceMotion
             ? {}
-            : {
-                rotateX: -4,
-                rotateY: 5,
-                y: -8,
-                scale: 1.015,
-              }
+            : { rotateX: -4, rotateY: 5, y: -8, scale: 1.015 }
         }
-        transition={{
-          type: "spring",
-          stiffness: 180,
-          damping: 18,
-        }}
-        style={{
-          transformStyle: "preserve-3d",
-        }}
+        transition={{ type: "spring", stiffness: 180, damping: 18 }}
+        style={{ transformStyle: "preserve-3d" }}
         className={className}
       >
         {children}

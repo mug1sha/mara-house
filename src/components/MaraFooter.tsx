@@ -52,9 +52,12 @@ export default function MaraFooter() {
 
           <Link
             href="#top"
-            className="transition-opacity hover:opacity-70"
+            className="flex flex-col items-center gap-3 transition-opacity hover:opacity-70"
           >
-            <MaraLogo variant="light" width={180} height={45} />
+            <MaraLogo variant="light" width={160} height={40} />
+            <span className="font-serif text-3xl tracking-[0.12em]">
+              MARA HOUSE
+            </span>
           </Link>
 
           <p className="mt-3 text-[9px] uppercase tracking-[0.38em] text-[#A7A9A5]">
