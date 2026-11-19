@@ -332,13 +332,13 @@ Please share availability and final pricing.`;
               </Reveal>
             </div>
 
-            {/* Editorial full-bleed cards */}
-            <div className="grid gap-4 md:grid-cols-3 md:gap-5">
+            {/* Mobile: horizontal scroll row. md+: 3-col grid */}
+            <div className="flex gap-4 overflow-x-auto pb-4 md:grid md:grid-cols-3 md:gap-5 md:overflow-visible md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
               {rooms.map((item, index) => (
-                <Reveal key={item.name} delay={index * 0.12}>
+                <Reveal key={item.name} delay={index * 0.12} className="shrink-0 w-[75vw] sm:w-[55vw] md:w-auto">
                   <a
                     href="#booking"
-                    className="group relative block h-[480px] overflow-hidden md:h-[580px]"
+                    className="group relative block h-[420px] overflow-hidden md:h-[580px]"
                   >
                     {/* Full-bleed parallax image */}
                     <ParallaxImage
