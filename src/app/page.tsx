@@ -355,10 +355,6 @@ Please share availability and final pricing.`;
                       {item.tag}
                     </span>
 
-                    {/* Room number — large faded background text */}
-                    <span className="absolute left-5 top-4 font-serif text-7xl font-bold leading-none text-white/[0.06] select-none md:text-8xl">
-                      0{index + 1}
-                    </span>
 
                     {/* Content — slides up on hover */}
                     <div className="absolute inset-x-0 bottom-0 p-6 md:p-7">
