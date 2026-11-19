@@ -46,7 +46,8 @@ const rooms = [
   {
     name: "Executive Suite",
     price: "165,000",
-    description: "An exceptional stay for guests who appreciate the finer things.",
+    description:
+      "An exceptional stay for guests who appreciate the finer things.",
     image:
       "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=1000",
     tag: "Premium",
@@ -76,7 +77,7 @@ function SectionTitle({
       <p className="mb-4 text-xs font-semibold uppercase tracking-[0.25em] text-[#a77c52]">
         {eyebrow}
       </p>
-      <h2 className="font-serif text-4xl leading-tight tracking-tight text-[#25241f] md:text-5xl">
+      <h2 className="font-serif text-3xl leading-tight tracking-tight text-[#25241f] md:text-5xl">
         {title}
       </h2>
       {description && (
@@ -123,12 +124,12 @@ Please share availability and final pricing.`;
 
         {/* NAVIGATION */}
         <header className="absolute left-0 top-0 z-50 w-full border-b border-white/15">
-          <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-6 lg:px-10">
-            <a href="#" className="group">
-              <span className="font-serif text-2xl tracking-[0.15em] text-white">
+          <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 md:px-6 md:py-6 lg:px-10">
+            <a href="#top">
+              <span className="font-serif text-xl tracking-[0.15em] text-white md:text-2xl">
                 MARA HOUSE
               </span>
-              <span className="block text-[9px] tracking-[0.4em] text-white/65">
+              <span className="block text-[8px] tracking-[0.4em] text-white/65 md:text-[9px]">
                 KIGALI · RWANDA
               </span>
             </a>
@@ -147,22 +148,32 @@ Please share availability and final pricing.`;
               Book your stay <ArrowUpRight size={14} />
             </a>
 
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="text-white md:hidden"
-              aria-label="Toggle navigation"
-            >
-              {menuOpen ? <X /> : <Menu />}
-            </button>
+            {/* Mobile: book CTA + hamburger */}
+            <div className="flex items-center gap-4 md:hidden">
+              <a
+                href="#booking"
+                className="border border-white/70 px-4 py-2 text-[9px] uppercase tracking-widest text-white"
+              >
+                Book
+              </a>
+              <button
+                onClick={() => setMenuOpen(!menuOpen)}
+                className="text-white"
+                aria-label="Toggle navigation"
+              >
+                {menuOpen ? <X size={22} /> : <Menu size={22} />}
+              </button>
+            </div>
           </div>
 
           {menuOpen && (
-            <nav className="flex flex-col gap-6 bg-[#25241f] p-8 text-sm uppercase tracking-widest text-white md:hidden">
+            <nav className="flex flex-col gap-5 bg-[#25241f] px-6 py-8 text-sm uppercase tracking-widest text-white md:hidden">
               {["rooms", "experience", "gallery", "contact", "booking"].map(
                 (item) => (
                   <a
                     key={item}
                     href={`#${item}`}
+                    className="border-b border-white/10 pb-4"
                     onClick={() => setMenuOpen(false)}
                   >
                     {item}
@@ -173,9 +184,8 @@ Please share availability and final pricing.`;
           )}
         </header>
 
-        {/* HERO — animated */}
-        <section className="relative flex min-h-[720px] items-center overflow-hidden md:min-h-[850px]">
-          {/* Background with cinematic scale-in */}
+        {/* HERO */}
+        <section className="relative flex min-h-[100svh] items-center overflow-hidden md:min-h-[850px]">
           <motion.div
             initial={reduceMotion ? false : { scale: 1.12 }}
             animate={{ scale: 1 }}
@@ -191,19 +201,19 @@ Please share availability and final pricing.`;
             />
           </motion.div>
 
-          <div className="absolute inset-0 bg-black/45" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/20 to-transparent" />
+          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/20 to-transparent" />
 
-          <div className="relative mx-auto w-full max-w-7xl px-6 pt-32 lg:px-10">
+          <div className="relative mx-auto w-full max-w-7xl px-5 pt-28 md:px-6 md:pt-32 lg:px-10">
             <div className="max-w-3xl">
 
               <motion.p
                 initial={reduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
-                className="mb-7 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-[#e5c6a3]"
+                className="mb-6 flex items-center gap-3 text-[10px] uppercase tracking-[0.3em] text-[#e5c6a3] md:mb-7 md:text-xs"
               >
-                <span className="h-px w-10 bg-[#e5c6a3]" />
+                <span className="h-px w-8 bg-[#e5c6a3] md:w-10" />
                 A different kind of stay
               </motion.p>
 
@@ -211,7 +221,7 @@ Please share availability and final pricing.`;
                 initial={reduceMotion ? false : { opacity: 0, y: 50 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                className="font-serif text-6xl leading-[1.05] tracking-tight text-white sm:text-7xl md:text-8xl"
+                className="font-serif text-5xl leading-[1.05] tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
               >
                 Find your
                 <br />
@@ -224,23 +234,23 @@ Please share availability and final pricing.`;
                 initial={reduceMotion ? false : { opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 1.2, duration: 1 }}
-                className="mt-8 max-w-md text-sm leading-7 text-white/75 md:text-base"
+                className="mt-6 max-w-sm text-sm leading-7 text-white/75 md:mt-8 md:max-w-md md:text-base"
               >
-                Thoughtfully designed spaces, genuine hospitality and
-                quiet moments in the heart of Rwanda&apos;s beautiful capital.
+                Thoughtfully designed spaces, genuine hospitality and quiet
+                moments in the heart of Rwanda&apos;s beautiful capital.
               </motion.p>
 
               <motion.div
                 initial={reduceMotion ? false : { opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.5, duration: 0.8 }}
-                className="mt-10 flex flex-wrap items-center gap-5"
+                className="mt-8 flex flex-wrap items-center gap-4 md:mt-10 md:gap-5"
               >
                 <a
                   href="#rooms"
-                  className="flex items-center gap-4 bg-[#c19a73] px-7 py-4 text-xs uppercase tracking-widest text-white transition hover:bg-[#a77c52]"
+                  className="flex items-center gap-3 bg-[#c19a73] px-6 py-4 text-xs uppercase tracking-widest text-white transition hover:bg-[#a77c52]"
                 >
-                  Explore our rooms <ArrowRight size={15} />
+                  Explore our rooms <ArrowRight size={14} />
                 </a>
                 <a
                   href="#experience"
@@ -253,14 +263,17 @@ Please share availability and final pricing.`;
             </div>
           </div>
 
-          <div className="absolute bottom-10 right-10 hidden text-right text-white/75 md:block">
+          <div className="absolute bottom-8 right-8 hidden text-right text-white/75 md:block">
             <p className="text-xs tracking-[0.2em]">KIGALI, RWANDA</p>
             <p className="mt-2 font-serif text-2xl italic">02° S · 30° E</p>
           </div>
         </section>
 
         {/* INTRO */}
-        <section id="experience" className="mx-auto grid max-w-7xl gap-12 px-6 py-24 md:grid-cols-2 md:items-center md:py-32 lg:px-10">
+        <section
+          id="experience"
+          className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-2 md:items-center md:py-32 md:px-6 lg:px-10"
+        >
           <Reveal>
             <div>
               <SectionTitle
@@ -270,7 +283,7 @@ Please share availability and final pricing.`;
               />
               <a
                 href="#contact"
-                className="mt-9 inline-flex items-center gap-3 border-b border-[#a77c52] pb-3 text-xs uppercase tracking-widest"
+                className="mt-8 inline-flex items-center gap-3 border-b border-[#a77c52] pb-3 text-xs uppercase tracking-widest"
               >
                 Get to know us <ArrowUpRight size={15} />
               </a>
@@ -278,15 +291,16 @@ Please share availability and final pricing.`;
           </Reveal>
 
           <Reveal delay={0.15}>
-            <div className="relative">
+            {/* Extra bottom padding on mobile to prevent the overlay card from clipping */}
+            <div className="relative pb-10 md:pb-0">
               <ParallaxImage
                 src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?w=1100"
                 alt="Warm and elegant hotel interior"
-                className="h-[440px] md:h-[550px]"
+                className="h-[340px] md:h-[550px]"
               />
-              <div className="absolute -bottom-7 -left-5 bg-[#c19a73] p-7 text-white md:-left-10 md:p-10">
-                <p className="font-serif text-4xl italic">Feel at home.</p>
-                <p className="mt-2 text-[10px] uppercase tracking-[0.2em]">
+              <div className="absolute -bottom-2 left-4 bg-[#c19a73] p-5 text-white md:-bottom-7 md:-left-10 md:p-10">
+                <p className="font-serif text-2xl italic md:text-4xl">Feel at home.</p>
+                <p className="mt-1 text-[9px] uppercase tracking-[0.2em] md:mt-2 md:text-[10px]">
                   Stay a little longer
                 </p>
               </div>
@@ -295,9 +309,9 @@ Please share availability and final pricing.`;
         </section>
 
         {/* ROOMS */}
-        <section id="rooms" className="bg-[#eeece5] px-6 py-24 md:py-32 lg:px-10">
+        <section id="rooms" className="bg-[#eeece5] px-5 py-20 md:py-32 md:px-6 lg:px-10">
           <div className="mx-auto max-w-7xl">
-            <div className="mb-14 flex flex-col justify-between gap-6 md:flex-row md:items-end">
+            <div className="mb-12 flex flex-col justify-between gap-5 md:mb-14 md:flex-row md:items-end">
               <Reveal>
                 <SectionTitle
                   eyebrow="Stay with us"
@@ -308,49 +322,54 @@ Please share availability and final pricing.`;
               <Reveal delay={0.1}>
                 <a
                   href="#booking"
-                  className="inline-flex items-center gap-3 text-xs uppercase tracking-widest"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-widest"
                 >
-                  Find your room <ArrowRight size={15} />
+                  Find your room <ArrowRight size={14} />
                 </a>
               </Reveal>
             </div>
 
-            <div className="grid gap-7 md:grid-cols-3">
+            <div className="grid gap-8 md:grid-cols-3">
               {rooms.map((item, index) => (
-                <Reveal key={item.name} delay={index * 0.15}>
+                <Reveal key={item.name} delay={index * 0.12}>
                   <TiltCard>
-                    <article className="group overflow-hidden bg-[#f8f6f1]">
-                      <ParallaxImage
-                        src={item.image}
-                        alt={item.name}
-                        className="relative h-[320px] md:h-[390px]"
-                      />
-                      <span className="absolute left-5 top-5 bg-[#f8f6f1] px-4 py-2 text-[9px] uppercase tracking-[0.2em]">
-                        {item.tag}
-                      </span>
-                      <div className="flex items-start justify-between gap-3 px-1 pt-6">
-                        <div>
-                          <h3 className="font-serif text-2xl">{item.name}</h3>
-                          <p className="mt-2 text-sm leading-6 text-[#77746e]">
-                            {item.description}
-                          </p>
-                        </div>
-                        <ArrowUpRight className="mt-1 shrink-0 text-[#a77c52]" />
+                    <article className="overflow-hidden bg-[#f8f6f1]">
+                      {/* Image wrapper — tag badge sits inside this relative container */}
+                      <div className="relative h-[260px] md:h-[360px]">
+                        <ParallaxImage
+                          src={item.image}
+                          alt={item.name}
+                          className="h-full w-full"
+                        />
+                        <span className="absolute left-4 top-4 bg-[#f8f6f1] px-3 py-1.5 text-[9px] uppercase tracking-[0.2em]">
+                          {item.tag}
+                        </span>
                       </div>
-                      <div className="mx-1 mt-6 flex items-center justify-between border-t border-[#d5d1c7] pt-5">
-                        <p className="text-xs text-[#77746e]">
-                          From{" "}
-                          <span className="font-semibold text-[#25241f]">
-                            {item.price} RWF
-                          </span>{" "}
-                          / night
-                        </p>
-                        <a
-                          href="#booking"
-                          className="text-[10px] uppercase tracking-widest underline underline-offset-4"
-                        >
-                          Enquire
-                        </a>
+                      <div className="p-5 md:p-6">
+                        <div className="flex items-start justify-between gap-3">
+                          <div>
+                            <h3 className="font-serif text-xl md:text-2xl">{item.name}</h3>
+                            <p className="mt-2 text-sm leading-6 text-[#77746e]">
+                              {item.description}
+                            </p>
+                          </div>
+                          <ArrowUpRight className="mt-1 shrink-0 text-[#a77c52]" size={18} />
+                        </div>
+                        <div className="mt-5 flex items-center justify-between border-t border-[#d5d1c7] pt-4">
+                          <p className="text-xs text-[#77746e]">
+                            From{" "}
+                            <span className="font-semibold text-[#25241f]">
+                              {item.price} RWF
+                            </span>{" "}
+                            / night
+                          </p>
+                          <a
+                            href="#booking"
+                            className="text-[10px] uppercase tracking-widest underline underline-offset-4"
+                          >
+                            Enquire
+                          </a>
+                        </div>
                       </div>
                     </article>
                   </TiltCard>
@@ -365,33 +384,33 @@ Please share availability and final pricing.`;
         </section>
 
         {/* EXPERIENCE BANNER */}
-        <section className="relative flex min-h-[530px] items-center overflow-hidden">
+        <section className="relative flex min-h-[480px] items-center overflow-hidden md:min-h-[530px]">
           <ParallaxImage
             src="https://images.unsplash.com/photo-1571896349842-33c89424de2d?w=1800"
             alt="MARA HOUSE experience"
             className="absolute inset-0 h-full w-full"
           />
-          <div className="absolute inset-0 bg-black/50" />
-          <div className="relative mx-auto max-w-7xl px-6 py-24 text-center text-white">
+          <div className="absolute inset-0 bg-black/55" />
+          <div className="relative mx-auto w-full max-w-7xl px-5 py-20 text-center text-white md:px-6 md:py-24">
             <Reveal>
-              <p className="mb-6 text-xs uppercase tracking-[0.3em] text-[#e5c6a3]">
+              <p className="mb-5 text-[10px] uppercase tracking-[0.3em] text-[#e5c6a3] md:mb-6 md:text-xs">
                 The MARA experience
               </p>
-              <h2 className="mx-auto max-w-3xl font-serif text-5xl leading-tight md:text-7xl">
+              <h2 className="mx-auto max-w-2xl font-serif text-4xl leading-tight md:max-w-3xl md:text-6xl lg:text-7xl">
                 Every stay deserves a beautiful story.
               </h2>
               <a
                 href="#booking"
-                className="mt-9 inline-flex items-center gap-3 border border-white px-7 py-4 text-xs uppercase tracking-widest transition hover:bg-white hover:text-black"
+                className="mt-8 inline-flex items-center gap-3 border border-white px-6 py-4 text-xs uppercase tracking-widest transition hover:bg-white hover:text-black md:mt-9 md:px-7"
               >
-                Plan your stay <ArrowUpRight size={15} />
+                Plan your stay <ArrowUpRight size={14} />
               </a>
             </Reveal>
           </div>
         </section>
 
         {/* AMENITIES */}
-        <section className="mx-auto max-w-7xl px-6 py-24 md:py-32 lg:px-10">
+        <section className="mx-auto max-w-7xl px-5 py-20 md:py-32 md:px-6 lg:px-10">
           <Reveal>
             <div className="mx-auto max-w-2xl text-center">
               <SectionTitle
@@ -402,12 +421,12 @@ Please share availability and final pricing.`;
             </div>
           </Reveal>
 
-          <div className="mt-16 grid grid-cols-2 gap-8 md:grid-cols-3">
+          <div className="mt-14 grid grid-cols-2 gap-6 md:mt-16 md:grid-cols-3 md:gap-8">
             {amenities.map(({ icon: Icon, name }, index) => (
               <Reveal key={name} delay={index * 0.08}>
-                <div className="flex flex-col items-center border-b border-[#dedbd2] pb-8 text-center">
-                  <Icon size={27} strokeWidth={1.2} className="text-[#a77c52]" />
-                  <p className="mt-5 text-sm">{name}</p>
+                <div className="flex flex-col items-center border-b border-[#dedbd2] pb-7 text-center md:pb-8">
+                  <Icon size={26} strokeWidth={1.2} className="text-[#a77c52]" />
+                  <p className="mt-4 text-sm">{name}</p>
                 </div>
               </Reveal>
             ))}
@@ -415,7 +434,7 @@ Please share availability and final pricing.`;
         </section>
 
         {/* GALLERY */}
-        <section id="gallery" className="bg-[#eeece5] px-6 py-24 md:py-28 lg:px-10">
+        <section id="gallery" className="bg-[#eeece5] px-5 py-20 md:py-28 md:px-6 lg:px-10">
           <div className="mx-auto max-w-7xl">
             <Reveal>
               <SectionTitle
@@ -424,18 +443,23 @@ Please share availability and final pricing.`;
               />
             </Reveal>
 
-            <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4">
+            {/* Mobile: single column stack. md+: 4-col grid with wide second image */}
+            <div className="mt-10 grid grid-cols-1 gap-3 md:mt-12 md:grid-cols-4">
               {[
                 "photo-1611892440504-42a792e24d32",
                 "photo-1600607687939-ce8a6c25118c",
                 "photo-1600210492486-724fe5c67fb0",
                 "photo-1616486338812-3dadae4b4ace",
               ].map((photo, i) => (
-                <Reveal key={photo} delay={i * 0.1} className={i === 1 ? "md:col-span-2" : ""}>
+                <Reveal
+                  key={photo}
+                  delay={i * 0.1}
+                  className={i === 1 ? "md:col-span-2" : ""}
+                >
                   <ParallaxImage
                     src={`https://images.unsplash.com/${photo}?w=1000`}
                     alt={`MARA House gallery ${i + 1}`}
-                    className="h-56 md:h-80"
+                    className="h-52 md:h-80"
                   />
                 </Reveal>
               ))}
@@ -444,7 +468,10 @@ Please share availability and final pricing.`;
         </section>
 
         {/* BOOKING */}
-        <section id="booking" className="mx-auto grid max-w-7xl gap-14 px-6 py-24 md:grid-cols-2 md:py-32 lg:px-10">
+        <section
+          id="booking"
+          className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:grid-cols-2 md:gap-14 md:py-32 md:px-6 lg:px-10"
+        >
           <Reveal>
             <div>
               <SectionTitle
@@ -453,7 +480,7 @@ Please share availability and final pricing.`;
                 description="Tell us a little about your visit. Our team will help you explore availability and find the right accommodation."
               />
 
-              <div className="mt-10 space-y-5 text-sm text-[#77746e]">
+              <div className="mt-8 space-y-5 text-sm text-[#77746e] md:mt-10">
                 <p className="flex items-center gap-3">
                   <MapPin size={18} className="text-[#a77c52]" />
                   Kiyovu, Kigali, Rwanda
@@ -467,8 +494,10 @@ Please share availability and final pricing.`;
           </Reveal>
 
           <Reveal delay={0.15}>
-            <form onSubmit={bookRoom} className="bg-white p-7 shadow-sm md:p-10">
-              <p className="mb-8 font-serif text-3xl">Reservation enquiry</p>
+            <form onSubmit={bookRoom} className="bg-white p-6 shadow-sm md:p-10">
+              <p className="mb-7 font-serif text-2xl md:mb-8 md:text-3xl">
+                Reservation enquiry
+              </p>
 
               <label className="mb-2 block text-xs uppercase tracking-widest">
                 Your full name
@@ -478,7 +507,7 @@ Please share availability and final pricing.`;
                 value={guestName}
                 onChange={(e) => setGuestName(e.target.value)}
                 placeholder="Enter your name"
-                className="mb-6 w-full border-b border-[#d8d4cb] bg-transparent py-4 text-sm outline-none focus:border-[#a77c52]"
+                className="mb-5 w-full border-b border-[#d8d4cb] bg-transparent py-3 text-sm outline-none focus:border-[#a77c52] md:mb-6 md:py-4"
               />
 
               <label className="mb-2 block text-xs uppercase tracking-widest">
@@ -487,14 +516,15 @@ Please share availability and final pricing.`;
               <select
                 value={room}
                 onChange={(e) => setRoom(e.target.value)}
-                className="mb-6 w-full border-b border-[#d8d4cb] bg-transparent py-4 text-sm outline-none"
+                className="mb-5 w-full border-b border-[#d8d4cb] bg-transparent py-3 text-sm outline-none md:mb-6 md:py-4"
               >
                 {rooms.map((r) => (
                   <option key={r.name}>{r.name}</option>
                 ))}
               </select>
 
-              <div className="mb-6 grid grid-cols-2 gap-5">
+              {/* Stack date fields on mobile, side by side on md+ */}
+              <div className="mb-5 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mb-6 md:gap-5">
                 <div>
                   <label className="mb-2 block text-xs uppercase tracking-widest">
                     Check-in
@@ -504,7 +534,7 @@ Please share availability and final pricing.`;
                     type="date"
                     value={checkIn}
                     onChange={(e) => setCheckIn(e.target.value)}
-                    className="w-full border-b border-[#d8d4cb] py-4 text-xs outline-none"
+                    className="w-full border-b border-[#d8d4cb] py-3 text-sm outline-none md:py-4"
                   />
                 </div>
                 <div>
@@ -517,14 +547,14 @@ Please share availability and final pricing.`;
                     min={checkIn || undefined}
                     value={checkOut}
                     onChange={(e) => setCheckOut(e.target.value)}
-                    className="w-full border-b border-[#d8d4cb] py-4 text-xs outline-none"
+                    className="w-full border-b border-[#d8d4cb] py-3 text-sm outline-none md:py-4"
                   />
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="mt-5 flex w-full items-center justify-center gap-3 bg-[#25241f] px-6 py-5 text-xs uppercase tracking-[0.2em] text-white transition hover:bg-[#a77c52]"
+                className="mt-4 flex w-full items-center justify-center gap-3 bg-[#25241f] px-6 py-4 text-xs uppercase tracking-[0.2em] text-white transition hover:bg-[#a77c52] md:mt-5 md:py-5"
               >
                 Send booking enquiry <ArrowUpRight size={16} />
               </button>

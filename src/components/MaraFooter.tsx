@@ -52,11 +52,11 @@ export default function MaraFooter() {
 
           <Link
             href="#top"
-            className="flex items-center gap-4 transition-opacity hover:opacity-70"
+            className="flex flex-wrap items-center justify-center gap-3 transition-opacity hover:opacity-70"
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/icon.svg" alt="MARA HOUSE icon" width={48} height={48} />
-            <span className="font-serif text-3xl tracking-[0.12em]">
+            <span className="font-serif text-2xl tracking-[0.12em] md:text-3xl">
               MARA HOUSE
             </span>
           </Link>
