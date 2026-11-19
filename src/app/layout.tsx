@@ -19,9 +19,13 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "MARA HOUSE · Kigali, Rwanda",
+  title: "MARA HOUSE | Boutique Hospitality",
   description:
-    "Thoughtfully designed spaces, genuine hospitality and quiet moments in the heart of Kigali.",
+    "Discover thoughtful hospitality, timeless comfort and memorable stays at MARA HOUSE, Kigali.",
+  icons: {
+    icon: "/icon.svg",
+    apple: "/apple-icon.png",
+  },
 };
 
 export default function RootLayout({

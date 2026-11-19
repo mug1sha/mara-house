@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80">
+  <!-- Light logo — MARA HOUSE wordmark on dark backgrounds -->
+  <rect width="320" height="80" rx="0" fill="none"/>
+
+  <!-- M icon mark -->
+  <rect x="0" y="10" width="52" height="52" rx="10" fill="#D4AF7C"/>
+  <path d="M10 52V28h6l10 11 10-11h6v24H36V36l-8 9-8-9v16z" fill="#0B0B0C"/>
+  <path d="M8 54 Q26 49 44 54" fill="none" stroke="#0B0B0C" stroke-width="1.2"/>
+
+  <!-- Wordmark -->
+  <text x="68" y="38"
+    font-family="Georgia, serif"
+    font-size="22"
+    font-weight="400"
+    letter-spacing="4"
+    fill="#F4F1EA">MARA HOUSE</text>
+  <text x="69" y="56"
+    font-family="Arial, sans-serif"
+    font-size="8"
+    font-weight="400"
+    letter-spacing="5"
+    fill="#D4AF7C">KIGALI · RWANDA</text>
+</svg>
