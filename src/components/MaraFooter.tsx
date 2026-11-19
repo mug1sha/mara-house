@@ -5,6 +5,7 @@ import {
   MessageCircle,
   MapPin,
 } from "lucide-react";
+import MaraLogo from "@/components/MaraLogo";
 
 // lucide-react v1.x removed brand icons (Instagram, Facebook).
 // Camera is the recognised stand-in for Instagram; Share2 for Facebook.
@@ -51,9 +52,9 @@ export default function MaraFooter() {
 
           <Link
             href="#top"
-            className="font-serif text-3xl tracking-[0.12em] transition-opacity hover:opacity-70"
+            className="transition-opacity hover:opacity-70"
           >
-            MARA HOUSE
+            <MaraLogo variant="light" width={180} height={45} />
           </Link>
 
           <p className="mt-3 text-[9px] uppercase tracking-[0.38em] text-[#A7A9A5]">
